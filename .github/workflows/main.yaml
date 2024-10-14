@@ -52,8 +52,8 @@ jobs:
         chmod +x ./scripts/build.sh
         bash scripts/build.sh
 
-#    - name: Push to Docker Hub
-#      env:
-#        IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-#      run: |
-#        docker push $GROUP/$IMAGE:$IMAGE_TAG
+    - name: Push to Docker Hub
+      env:
+        IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+      run: |
+        docker push $GROUP/$IMAGE:$IMAGE_TAG

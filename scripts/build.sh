@@ -41,4 +41,4 @@ for m in ./docker/*/; do
       -t ${REPO}:${IMAGE_TAG} $CODE_DIR/$m;
 done;
 
-$DOCKER_CMD push ${REPO}:${IMAGE_TAG}
+#$DOCKER_CMD push ${REPO}:${IMAGE_TAG}
