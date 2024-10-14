@@ -12,11 +12,6 @@ if [[ -z "$GROUP" ]] ; then
     exit 1
 fi
 
-#if [[ -z "$COMMIT" ]] ; then
-#    echo "Cannot find COMMIT env var"
-#    exit 1
-#fi
-
 if [[ -z "$IMAGE_TAG" ]] ; then
     echo "Cannot find IMAGE_TAG env var"
     exit 1
@@ -25,9 +20,9 @@ fi
 
 
 if [[ "$(uname)" == "Darwin" ]]; then
-    DOCKER_CMD=docker
-else
     DOCKER_CMD="sudo docker"
+else
+    DOCKER_CMD=docker
 fi
 
 CODE_DIR=$(cd $SCRIPT_DIR/..; pwd)
