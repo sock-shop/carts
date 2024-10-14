@@ -18,7 +18,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     env:
-      GROUP: sock-shop
+      GROUP: f3lin
       COMMIT: ${{ github.sha }}
       DOCKER_USERNAME: f3lin
       IMAGE: carts
@@ -45,15 +45,15 @@ jobs:
         username: ${{ env.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASS }}
 
-    - name: Build jar files
+    - name: Build  jar files & Push
       env:
         IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |
         chmod +x ./scripts/build.sh
         bash scripts/build.sh
 
-    - name: Push to Docker Hub
-      env:
-        IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-      run: |
-        docker push $GROUP/$IMAGE:$IMAGE_TAG
+#    - name: Push to Docker Hub
+#      env:
+#        IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+#      run: |
+#        docker push $GROUP/$IMAGE:$IMAGE_TAG

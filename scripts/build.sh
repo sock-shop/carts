@@ -17,8 +17,6 @@ if [[ -z "$IMAGE_TAG" ]] ; then
     exit 1
 fi
 
-
-
 if [[ "$(uname)" == "Darwin" ]]; then
     DOCKER_CMD="sudo docker"
 else
@@ -42,3 +40,5 @@ for m in ./docker/*/; do
       --build-arg COMMIT=$COMMIT \
       -t ${REPO}:${IMAGE_TAG} $CODE_DIR/$m;
 done;
+
+$DOCKER_CMD push ${REPO}:${IMAGE_TAG}
