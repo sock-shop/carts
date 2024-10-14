@@ -12,10 +12,17 @@ if [[ -z "$GROUP" ]] ; then
     exit 1
 fi
 
-if [[ -z "$COMMIT" ]] ; then
-    echo "Cannot find COMMIT env var"
+#if [[ -z "$COMMIT" ]] ; then
+#    echo "Cannot find COMMIT env var"
+#    exit 1
+#fi
+
+if [[ -z "$IMAGE_TAG" ]] ; then
+    echo "Cannot find IMAGE_TAG env var"
     exit 1
 fi
+
+
 
 if [[ "$(uname)" == "Darwin" ]]; then
     DOCKER_CMD=docker
@@ -33,9 +40,10 @@ cp $CODE_DIR/target/*.jar $CODE_DIR/docker/carts
 
 for m in ./docker/*/; do
     REPO=${GROUP}/$(basename $m)
+
     $DOCKER_CMD build \
       --build-arg BUILD_VERSION=$BUILD_VERSION \
       --build-arg BUILD_DATE=$BUILD_DATE \
       --build-arg COMMIT=$COMMIT \
-      -t ${REPO}:${COMMIT} $CODE_DIR/$m;
+      -t ${REPO}:${IMAGE_TAG} $CODE_DIR/$m;
 done;
