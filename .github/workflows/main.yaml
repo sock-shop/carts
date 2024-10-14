@@ -45,7 +45,9 @@ jobs:
 
     # Build
     - name: Build jar files
-      run: ./scripts/build.sh
+      run: |
+        chmod +x ./scripts/build.sh
+        bash scripts/build.sh
 
     # Push to dockerhub
 #    - name: Push to Docker Hub
